@@ -15,20 +15,20 @@ public class Main {
         if(n>=3 && n<=7) {
             String[][] arr= new String[n][n];
             while(true){
-                boolean nextp=false;
+
 
                 System.out.println("PlayerCons" + "  " + playerKons);
                 System.out.println("PlayerPc" + "  " + playerPc);
 
-                System.out.println("Satır numrası giriniz: ");
+                System.out.println("Satır numarası giriniz: ");
                 int  row = input.nextInt();
                 System.out.println("Sütun numarası giriniz: ");
                 int  col = input.nextInt();
                 System.out.println("S veya O giriniz: ");
                 String dgr= input.next();
                 Gamedene(arr,row,col,"player",dgr);
-                int pluspoint=CheckPuan(arr,row,col);
-                if(pluspoint!=0) playerKons=  playerKons +pluspoint ;
+
+                playerKons +=CheckPuan(arr,row,col);
                 printArray(arr);
                 System.out.println("PlayerCons "+ "  "+ playerKons);
                 System.out.println("PlayerPc  "+ "  " + playerPc);
@@ -42,8 +42,8 @@ public class Main {
 
 
                 Gamedene(arr,row1,col1,"pc",dgr1);
-                int pluspoint1=CheckPuan(arr,row1,col1);
-                if(pluspoint1!=0) playerPc=  playerPc +pluspoint1 ;
+
+                playerPc +=CheckPuan(arr,row1,col1);
                 System.out.println("PlayerCons" +"  " + playerKons);
                 System.out.println("PlayerPc" + "  " + playerPc);
                 printArray(arr);
@@ -56,14 +56,13 @@ public class Main {
 
 
 
-        public static void Gamedene(String[][] arr,int row,int col,String user,String dgr){
+    public static void Gamedene(String[][] arr,int row,int col,String user,String dgr) {
 
-        if(arr[row][col]==null){
-            arr[row][col]=dgr;
+        if (arr[row][col] == null) {
+            arr[row][col] = dgr;
         }
-
     }
-        static int CheckPuan(String[][] arr, int row,int col) {
+    public static int CheckPuan(String[][] arr, int row,int col) {
         String select = arr[row][col];
         int point =0;
         for (int a = -1; a < 2; a++) {
@@ -78,12 +77,12 @@ public class Main {
                             if(select2!=null && select3!=null){
                                 if (select2.equalsIgnoreCase("O") && select3.equalsIgnoreCase("S")) {
                                     point++;
-
+                                    break;
 
                                 }
                             }
                         }
-                        break;
+
 
                     case "O":
                         if ((row + a >= 0 && row + a < arr.length && col + b >= 0 && col + b < arr.length) && (row - a >= 0 && row - a < arr.length && col - b >= 0 && col - b < arr.length)) {
@@ -92,7 +91,7 @@ public class Main {
                             if(select2!=null && select3!=null) {
                                 if (select2.equalsIgnoreCase("S") && select3.equalsIgnoreCase("S")) {
                                     point++;
-
+                                    break;
                                 }
                             }
 
@@ -105,9 +104,7 @@ public class Main {
 
         return point;
     }
-
-
-        public static void printArray(String[][] arr){
+       public static void printArray(String[][] arr){
 
         for(int t =0;t<arr.length;t++){
             for(int m =0;m< arr[t].length;m++){
@@ -117,7 +114,5 @@ public class Main {
         }
     }
 
-
-
-    }
+}
 
